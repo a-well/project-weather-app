@@ -12,7 +12,6 @@ const submitBtn = document.getElementById("submitBtn");
 const searchForm = document.getElementById("searchForm");
 
 // city and temps
-const currentCity = document.getElementById("city");
 const liveTemperature = document.getElementById("temperature");
 const weatherDescription = document.getElementById("description");
 const dayForecast = document.getElementById("weatherForecast");
@@ -44,7 +43,6 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// show is added to how burger menu appears
 const show = () => {
   sideMenu.style.display = "flex";
   closeMenu.style.display = "flex";
@@ -143,11 +141,9 @@ const printForecastEntry = (dayForecast) => {
 
   weatherForecast.innerHTML += `
   <div class="weather-forecast-entry">
-  <span class="weather-forecast-entry-day">${daysOfTheWeek[dayOfTheWeek]}</span>
-  <span class="weather-forecast-entry-icon"><img src="${forecastIcon}" alt="${forecastWeatherType}"/></span>
-  <span class="weather-forecast-entry-temperature">${dayForecast.main.temp.toFixed(
-    0
-  )}°</span>
+    <span class="weather-forecast-entry-day">${daysOfTheWeek[dayOfTheWeek]}</span>
+    <span class="weather-forecast-entry-icon"><img src="${forecastIcon}" alt="${forecastWeatherType}"/></span>
+    <span class="weather-forecast-entry-temperature">${dayForecast.main.temp.toFixed(0)}°</span>
   </div>
   `;
 };
@@ -164,16 +160,16 @@ const getWeather = (city) => {
     .then((json) => {
       console.log("got weather for now");
 
-      console.log(json.name);
-      console.log(currentCity);
 
+      console.log(json.name);
+      const currentCity = document.getElementById("city");
+      console.log(currentCity);
       currentCity.innerHTML = json.name;
       liveTemperature.innerHTML = json.main.temp.toFixed(1);
       weatherDescription.innerHTML = json.weather[0].description;
 
       weatherBasedTheme(json.weather[0].main, json.name);
 
-      // Sunrise and sunset //
       const timestampSunrise = json.sys.sunrise;
       const timestampSunset = json.sys.sunset;
 
@@ -181,13 +177,13 @@ const getWeather = (city) => {
       let sunriseTime = sunrise.toLocaleTimeString("sv-SE", {
         timeStyle: "short",
       });
-      currentSunrise.innerHTML = `${sunriseTime}`; // prints in HTML
+      currentSunrise.innerHTML = `${sunriseTime}`;
 
       let sunset = new Date(timestampSunset * 1000);
       let sunsetTime = sunset.toLocaleTimeString("sv-SE", {
         timeStyle: "short",
       });
-      currentSunset.innerHTML = `${sunsetTime}`; // prints in HTML
+      currentSunset.innerHTML = `${sunsetTime}`;
     })
     .catch((error) =>
       console.error(
@@ -210,9 +206,7 @@ const getWeather = (city) => {
 };
 getWeather("Stockholm");
 
-// Event listeners
 searchForm.addEventListener("submit", (e) => {
-  //when pressend enter it sends
   console.log("form submitted");
   e.preventDefault();
   weatherForecast.innerHTML = ``;
@@ -225,7 +219,7 @@ burger.addEventListener("click", show);
 closeMenu.addEventListener("click", close);
 searchForm.addEventListener("submit", close);
 
-// Enable user to close burger menu by pressing escape button
+// Enables user to close burger menu by pressing escape button
 document.onkeydown = function (evt) {
   evt = evt || window.event;
   var isEscape = false;
@@ -239,14 +233,11 @@ document.onkeydown = function (evt) {
   }
 };
 
-// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+// Hax for height when resizing window
 let vh = window.innerHeight * 0.01;
-// Then we set the value in the --vh custom property to the root of the document
 document.documentElement.style.setProperty("--vh", `${vh}px`);
 
-// We listen to the resize event
 window.addEventListener("resize", () => {
-  // We execute the same script as before
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty("--vh", `${vh}px`);
 });

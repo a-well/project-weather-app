@@ -8,10 +8,9 @@ body {
   color: #eedcc6;
   display: flex;
   height: calc(var(--vh, 1vh) * 100);
-  overflow: hidden;
 }
 
-/*---SPLASH SCREEN---*/
+/* - - - SPLASH SCREEN - - - - - - - - */
 
 .intro {
   position: fixed;
@@ -57,7 +56,9 @@ body {
   transition: ease-in-out 0.5s;
 }
 
+
 /* - - - MAIN - - - - - - - - */
+
 .weather-app {
   align-self: center;
   display: flex;
@@ -67,15 +68,15 @@ body {
   height: calc(var(--vh, 1vh) * 100);
   justify-content: space-between;
   flex-direction: column;
-  background-color: #928279; /*-apps color-*/
+  background-color: #928279;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 0;
   padding-bottom: 0;
   position: relative;
-  box-shadow: 1px 5px 30px -2px rgba(115,110,110,0.76);
-  -webkit-box-shadow: 1px 5px 30px -2px rgba(115,110,110,0.76);
-  -moz-box-shadow: 1px 5px 30px -2px rgba(115,110,110,0.76);
+  box-shadow: 3px 4px 5px -1px rgba(0,0,0,0.62);
+  -webkit-box-shadow: 3px 4px 5px -1px rgba(0,0,0,0.62);
+  -moz-box-shadow: 3px 4px 5px -1px rgba(0,0,0,0.62);
 }
 
 /* - - - HEADER WRAPPER - - - - - - - - */
@@ -116,11 +117,10 @@ body {
   width: 38px;
 }
 
-/*--Targets the position of the menu--*/
-
 .sideMenu {
   position: absolute;
-  background: linear-gradient(180deg, #dfd2cb 0%, #92827900 100%);
+  background: linear-gradient(180deg, #dfd2cb -60%, #92827900 100%);
+  backdrop-filter: blur(2px);
   top: 0;
   right: 0;
   left: 0;
@@ -174,11 +174,11 @@ a:link {
 
 .cozy-text {
   font-weight: 500;
+  padding-top: 30px;
 }
 
 .cozy-text-icon {
   width: 80px;
-  padding-top: 70px;
 }
 
 .cozy-text-paragraph {
@@ -188,7 +188,7 @@ a:link {
 /* - - - WEATHER FORECAST - - - - - - - - */
 
 .weather-forecast {
-  margin-bottom: 50px;
+  margin-bottom: 18px;
 }
 
 .weather-forecast-entry {
@@ -197,7 +197,6 @@ a:link {
   font-size: 20px;
   align-items: center;
   padding: 5px;
-
 }
 
 .weather-forecast-entry-day {
@@ -213,20 +212,11 @@ a:link {
   width: 23px;
 }
 
-.weather-test {
-  display: none;
-}
-
 /* - - - - - - - - - - - - - - - - - - - MEDIA QUERIES - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 /* - - - TABLET - - - - - - - - */
 
 @media (min-width: 668px) {
-  html,
-  body {
-    height: 100vh;
-  }
-
   .logo-header {
     left: 45%;
   }
@@ -252,16 +242,16 @@ a:link {
     width: 240px;
   }
 
-  .sideMenu {
-    background: linear-gradient(180deg, #928279 0%, #92827900 100%);
+  .cozy-text {
+    padding-top: 10px;
   }
 
   .cozy-text-icon {
-    font-size: 45px;
+    font-size: 44px;
   }
 
   .cozy-text-paragraph {
-    font-size: 35px;
+    font-size: 33px;
   }
 
   .weather-forecast-entry {
@@ -273,11 +263,8 @@ a:link {
   .sideMenu {
     border-radius: 10px;
   }
-
-  .weather-test {
-    display: block;
-  }
 }
+
 /* - - - DESKTOP - - - - - - - - */
 
 @media (min-width: 1025px) {
